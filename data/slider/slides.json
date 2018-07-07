@@ -1,0 +1,60 @@
+{
+  "slides": [
+    {
+      "id": 0,
+      "image": "http://www.hdwallpapers10.com/wp-content/uploads/2017/05/dark%20green%203d%20new%20wallpaper.jpg",
+      "description": {
+        "title": "new flowers 1",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure maxime modi nihil unde vitae? Aspernatur beatae deleniti expedita fugiat quis quod, sit. Ex illum inventore molestiae odio totam? Atque, vero."
+      },
+      "shares": {
+        "facebook": "xxx",
+        "instagram": "qqq",
+        "twitter": "ttt"
+      },
+      "priceText": "now from 120$"
+    },
+    {
+      "id": 1,
+      "image": "https://wallpapersite.com/images/pages/pic_w/10125.jpg",
+      "description": {
+        "title": "new flowers 2",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure maxime modi nihil unde vitae? Aspernatur beatae deleniti expedita fugiat quis quod, sit. Ex illum inventore molestiae odio totam? Atque, vero."
+      },
+      "shares": {
+        "facebook": "xxx",
+        "instagram": "qqq",
+        "twitter": "ttt"
+      },
+      "priceText": "now from 130$"
+    },
+    {
+      "id": 2,
+      "image": "https://i.pinimg.com/originals/a3/59/9c/a3599cc30a9e88c17bd3344b9da9555a.jpg",
+      "description": {
+        "title": "new flowers 3",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure maxime modi nihil unde vitae? Aspernatur beatae deleniti expedita fugiat quis quod, sit. Ex illum inventore molestiae odio totam? Atque, vero."
+      },
+      "shares": {
+        "facebook": "xxx",
+        "instagram": "qqq",
+        "twitter": "ttt"
+      },
+      "priceText": "now from 50$"
+    },
+    {
+      "id": 3,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTRnLIscgCtNKscZm9mZeqVDYoyD2KdHPb5nmV4Y5d58KLjuKtWA",
+      "description": {
+        "title": "new flowers 4",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure maxime modi nihil unde vitae? Aspernatur beatae deleniti expedita fugiat quis quod, sit. Ex illum inventore molestiae odio totam? Atque, vero."
+      },
+      "shares": {
+        "facebook": "xxx",
+        "instagram": "qqq",
+        "twitter": "ttt"
+      },
+      "priceText": "now from 50$"
+    }
+  ]
+}

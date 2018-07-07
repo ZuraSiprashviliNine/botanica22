@@ -1,0 +1,39 @@
+[
+  {
+    "id":"1",
+    "title":"home",
+    "slag":"/"
+  },
+  {
+    "id":"2",
+    "title":"flowers",
+    "slag":"/flowers",
+    "sub": [
+      {
+        "id": "3",
+        "title": "mourning floristic",
+        "slag": "/flowers/floristic"
+      },
+      {
+        "id": "4",
+        "title": "bouquets",
+        "slag": "/flowers/bouquets"
+      }
+    ]
+  },
+  {
+    "id":"5",
+    "title":"individual order",
+    "slag":"individual_order"
+  },
+  {
+    "id": "6",
+    "title": "conditions",
+    "slag": "conditions"
+  },
+  {
+    "id": "7",
+    "title": "contact",
+    "slag": "contact"
+  }
+]

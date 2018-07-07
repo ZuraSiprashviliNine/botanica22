@@ -1,0 +1,39 @@
+{
+  "items": [
+    {
+      "id": 0,
+      "image": "http://botanica22.ge/admin/images/2604658.png",
+      "route": "/sales/0",
+      "title": "Flower - C240",
+      "text": "sale"
+    },
+    {
+      "id": 1,
+      "image": "http://botanica22.ge/admin/images/7400070.png",
+      "route": "/sales/1",
+      "title": "Flower - C320",
+      "text": "sale"
+    },
+    {
+      "id": 2,
+      "image": "http://botanica22.ge/admin/images/2904345.png",
+      "route": "/sales/2",
+      "title": "Floewr -c123",
+      "text": "sale"
+    },
+    {
+      "id": 3,
+      "image": "http://botanica22.ge/admin/images/7601766.png",
+      "route": "/sales/3",
+      "title": "Floewr - c12",
+      "text": "sale"
+    },
+    {
+      "id": 4,
+      "image": "http://botanica22.ge/admin/images/3053178.png",
+      "route": "/sales/4",
+      "title": "Floewr - c44",
+      "text": "sale"
+    }
+  ]
+}
