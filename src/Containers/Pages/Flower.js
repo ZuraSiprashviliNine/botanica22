@@ -28,7 +28,7 @@ import {SliderButton} from "../../Components/SliderButton";
 
 import {reactLocalStorage as Storage} from 'reactjs-localstorage';
 
-import DocumentMeta from 'react-document-meta';
+import MetaTags from 'react-meta-tags';
 
 import {
   Container,
@@ -446,7 +446,7 @@ export class FlowerInfo extends React.Component{
                     onClick={(event) => {
                         window.open(event.target.href,'popup','width=600,height=600'); return false;
                     }}
-                    href={'https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u=http://testoneone.000webhostapp.com/flowers/items/item_'+this.props.id+'&display=popup&ref=plugin&src=share_button'}
+                    href={'https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u=https://botanica22.ge/flowers/items/item_'+this.props.id+'&display=popup&ref=plugin&src=share_button'}
                     className={'btn btn-grass btn-block text-capitalize text-white shadow rounded-no d-flex flex-row align-items-center justify-content-between'}>
                   <FontAwesome
                     name={'facebook'}/>
@@ -694,6 +694,17 @@ class Element extends React.Component{
       <div
         id={'flower_page'}
         className={'page animated fadeIn'}>
+        <MetaTags>
+          <title>
+              {this.props.Flower.flower.title}
+          </title>
+          <meta name={'description'} content={this.props.Flower.flower.description}/>
+          <meta name={'og:url'} content={window.location.href}/>
+          <meta name={'og:type'} content={'article'}/>
+          <meta name={'og:title'} content={`botanica22.ge Flower - (${this.props.Flower.flower.title})`}/>
+          <meta name={'og:description'} content={this.props.Flower.flower.description}/>
+          <meta name={'og:image'} content={this.props.Flower.flower.image}/>
+        </MetaTags>
         <Container className={'py-md-3 border-bottom'}>
           <Row className={'align-items-stretch'}>
             <Col
@@ -732,7 +743,7 @@ class Element extends React.Component{
           </Row>
         </Container>
 
-        <FlowerWarr />
+        {/*<FlowerWarr />*/}
 
         <div className={'collections-container'}>
           <CollectionsComponent

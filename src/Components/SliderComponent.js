@@ -170,8 +170,8 @@ export default class Slider extends React.Component{
                 </Translate>
               </h5>
             </div>
-            <div className={'text-light text-capitalize'}>
-                {
+            {/*<div className={'text-light text-capitalize'}>*/}
+                {/*
                   parseFloat(slide.price) == 0 ? (
                       ' '
                   ):(
@@ -182,8 +182,8 @@ export default class Slider extends React.Component{
                           <img src="/assets/lari_white.png" alt="lari" style={{width: '20px',height:'20px'}}/>{slide.price}
                       </small>
                   )
-                }
-            </div>
+                */}
+            {/*</div>*/}
           </Col>
         );
       });
