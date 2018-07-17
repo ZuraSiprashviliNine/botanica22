@@ -258,7 +258,9 @@ export class CollectionItem extends React.Component{
                   <Link
                     className={'text-muted d-block'}
                     to={'/flowers/items/item_' + this.props.id}>
-                    <Translate>
+                    <Translate
+                      language={'en'}
+                      divider={' - '}>
                       {this.props.title}
                     </Translate>
                   </Link>

@@ -434,7 +434,9 @@ export class FlowerInfo extends React.Component{
               lg={7}>
                 <h1
                     className={'text-capitalize font-weight-light m-9'}>
-                    <Translate>
+                    <Translate
+                        language={'en'}
+                        divider={' - '}>
                         {this.props.title}
                     </Translate>
                 </h1>

@@ -28,7 +28,7 @@ import {AnimatedAndMetas} from "../../Components/CollectionsComponent";
 import {ADD_FAVOURITES_FAVOURITES_BY_ID, UNSET_FAVOURITES_FAVOURITE_ITEM} from "../../Actions/FavouritesActions";
 import {reactLocalStorage as Storage} from "reactjs-localstorage";
 import {ADD_CARTS_CART_BY_ID, UNSET_CARTS_CART_ITEM} from "../../Actions/CartActions";
-
+import MetaTags from 'react-meta-tags';
 
 export class FlowerItem extends React.Component {
   constructor(props) {
@@ -79,7 +79,9 @@ export class FlowerItem extends React.Component {
                   <Link
                     className={'text-muted d-block'}
                     to={'/flowers/items/item_' + this.props.id}>
-                    <Translate>
+                    <Translate
+                      divider={' - '}
+                      language={'en'}>
                       {this.props.title}
                     </Translate>
                   </Link>
@@ -226,6 +228,12 @@ class Element extends React.Component{
       <main
         id={'flower_page'}
         className={'animated fadeIn page bg-light'}>
+          <MetaTags>
+              <title>
+                  {this.props.Flowers.currentCategory}
+              </title>
+              <meta name={'description'} content={this.props.Flowers.currentCategory}/>
+          </MetaTags>
         <div
           className={'py-md-5 bg-light'}>
           <Container>
