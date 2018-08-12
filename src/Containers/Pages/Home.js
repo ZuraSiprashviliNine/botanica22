@@ -23,6 +23,10 @@ import {CollectionsComponent} from "../../Components/CollectionsComponent";
 import {ADD_FAVOURITES_FAVOURITES_BY_ID, UNSET_FAVOURITES_FAVOURITE_ITEM} from "../../Actions/FavouritesActions";
 import {ADD_CARTS_CART_BY_ID, UNSET_CARTS_CART_ITEM} from "../../Actions/CartActions";
 
+import MetaTags from 'react-meta-tags';
+
+import Translate from '../Translate';
+
 class Element extends React.Component{
   constructor(props){
     super(props);
@@ -84,6 +88,14 @@ class Element extends React.Component{
       <main
         id={'home_page'}
         className={'animated fadeIn page bg-light'}>
+        <MetaTags>
+            <title>
+              Botanica22 •
+                ყვავილების მაღაზია
+                Botanica22
+            </title>
+            <meta name={'description'} content={'ყვავილების მაღაზია Botanica22 გთავაზობთ ყვავილების და თაიგულების საუკეთესო არჩევანს, ადგილზე მიტანის სერვისით. ქორწინების და ივენთების გაფორმება, კომპოზიციები, საქორწილო თაიგულები, ინდივიდუალური შეკვეთა.'}/>
+        </MetaTags>
         <div
           className={'slider'}>
           <SliderComponent {...this.props.Slider}/>

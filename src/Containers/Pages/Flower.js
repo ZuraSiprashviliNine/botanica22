@@ -705,7 +705,6 @@ class Element extends React.Component{
           <meta name={'og:type'} content={'article'}/>
           <meta name={'og:title'} content={`botanica22.ge Flower - (${this.props.Flower.flower.title})`}/>
           <meta name={'og:description'} content={this.props.Flower.flower.description}/>
-          <meta name={'og:image'} content={this.props.Flower.flower.image}/>
         </MetaTags>
         <Container className={'py-md-3 border-bottom'}>
           <Row className={'align-items-stretch'}>
