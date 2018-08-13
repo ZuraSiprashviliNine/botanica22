@@ -28,8 +28,6 @@ import {SliderButton} from "../../Components/SliderButton";
 
 import {reactLocalStorage as Storage} from 'reactjs-localstorage';
 
-import MetaTags from 'react-meta-tags';
-
 import {
   Container,
   Row,
@@ -643,12 +641,7 @@ class Element extends React.Component{
   }
 
   componentDidMount(){
-    if(this.props.Flower){
-      if(this.props.Flower.flower){
-          let str = this.props.Flower.flower.title;
-          document.title = str;
-      }
-    }
+    document.title = `${this.props.Flower.flower.title} * Botanica22.ge`;
   }
 
   _add_cart(id){
@@ -696,16 +689,6 @@ class Element extends React.Component{
       <div
         id={'flower_page'}
         className={'page animated fadeIn'}>
-        <MetaTags>
-          <title>
-              {this.props.Flower.flower.title}
-          </title>
-          <meta name={'description'} content={this.props.Flower.flower.description}/>
-          <meta name={'og:url'} content={window.location.href}/>
-          <meta name={'og:type'} content={'article'}/>
-          <meta name={'og:title'} content={`botanica22.ge Flower - (${this.props.Flower.flower.title})`}/>
-          <meta name={'og:description'} content={this.props.Flower.flower.description}/>
-        </MetaTags>
         <Container className={'py-md-3 border-bottom'}>
           <Row className={'align-items-stretch'}>
             <Col

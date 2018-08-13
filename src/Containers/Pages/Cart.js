@@ -238,10 +238,8 @@ class Element extends React.Component{
   }
 
   componentDidMount(){
-    if(this.props.Cart){
-        let str = `Your Cart ${this.props.Cart.count !== undefined && this.props.Cart.count !== null ? '(' + this.props.Cart.count + ')' : ''}`;
-        document.title = str;
-    }
+
+    document.title = "Cart * Botanica22.ge";
   }
 
   render(){

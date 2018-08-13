@@ -851,12 +851,7 @@ class Element extends React.Component{
 
 
     componentDidMount(){
-        if(this.props.Order){
-            if(this.props.Order.product){
-                let str = `Ordering: ${this.props.Order.product.title}`;
-                document.title = str;
-            }
-        }
+        document.title = "Order - Botanica22 • ყვავილების მაღაზია Botanica22"
     }
 
 

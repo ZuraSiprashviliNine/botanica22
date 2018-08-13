@@ -21,8 +21,7 @@ class Element extends React.Component{
   }
 
   componentDidMount(){
-      let str = `Delivery Conditions`;
-      document.title = str;
+      document.title = "Delivery Conditions * Botanica22.ge";
   }
 
   render(){

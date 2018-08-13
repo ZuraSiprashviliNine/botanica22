@@ -23,8 +23,7 @@ class Element extends React.Component{
   }
 
   componentDidMount(){
-      let str = `Contact us`;
-      document.title = str;
+    document.title = "Contact * botanica22.ge";
   }
 
   render(){

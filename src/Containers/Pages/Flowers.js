@@ -28,7 +28,6 @@ import {AnimatedAndMetas} from "../../Components/CollectionsComponent";
 import {ADD_FAVOURITES_FAVOURITES_BY_ID, UNSET_FAVOURITES_FAVOURITE_ITEM} from "../../Actions/FavouritesActions";
 import {reactLocalStorage as Storage} from "reactjs-localstorage";
 import {ADD_CARTS_CART_BY_ID, UNSET_CARTS_CART_ITEM} from "../../Actions/CartActions";
-import MetaTags from 'react-meta-tags';
 
 export class FlowerItem extends React.Component {
   constructor(props) {
@@ -153,12 +152,7 @@ class Element extends React.Component{
   }
 
   componentDidMount(){
-    if(this.props.Flowers){
-      if(this.props.Flowers.currentCategory){
-          let str = this.props.Flowers.currentCategory;
-          document.title = str;
-      }
-    }
+    document.title = `Botanica’22 ყვავილების მაღაზია - ${this.props.Flowers.currentCategory.replace(new RegExp('_', 'g'), ' ')}`;
   }
 
   _add_cart(id){
@@ -228,12 +222,6 @@ class Element extends React.Component{
       <main
         id={'flower_page'}
         className={'animated fadeIn page bg-light'}>
-          <MetaTags>
-              <title>
-                  {this.props.Flowers.currentCategory}
-              </title>
-              <meta name={'description'} content={this.props.Flowers.currentCategory}/>
-          </MetaTags>
         <div
           className={'py-md-5 bg-light'}>
           <Container>

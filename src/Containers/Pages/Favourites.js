@@ -26,7 +26,6 @@ import {
   Badge
 } from 'reactstrap';
 
-import FontAwesome from 'react-fontawesome';
 import {FlowerItem} from "./Flowers";
 import {reactLocalStorage as Storage} from "reactjs-localstorage";
 import {ADD_CARTS_CART_BY_ID, UNSET_CARTS_CART_ITEM} from "../../Actions/CartActions";
@@ -159,6 +158,10 @@ class Element extends React.Component{
         </Col>
       );
     });
+  }
+
+  componentDidMount(){
+    document.title = `Favourite flowers * Botanica22.ge`;
   }
 
   render(){
