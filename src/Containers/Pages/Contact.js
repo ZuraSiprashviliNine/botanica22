@@ -23,7 +23,7 @@ class Element extends React.Component{
   }
 
   componentDidMount(){
-    document.title = "Contact * botanica22.ge";
+    document.title = "კოტაქტი * botanica22.ge";
   }
 
   render(){

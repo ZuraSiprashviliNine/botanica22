@@ -239,7 +239,7 @@ class Element extends React.Component{
 
   componentDidMount(){
 
-    document.title = "Cart * Botanica22.ge";
+    document.title = "კარტა * Botanica22.ge";
   }
 
   render(){

@@ -161,7 +161,7 @@ class Element extends React.Component{
   }
 
   componentDidMount(){
-    document.title = `Favourite flowers * Botanica22.ge`;
+    document.title = `შერჩეული ყვავილები * Botanica22.ge`;
   }
 
   render(){

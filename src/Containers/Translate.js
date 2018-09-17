@@ -16,6 +16,7 @@ class Translate extends React.Component{
         && Object.values(this.props.secondary.keywords).every((keyword) => keyword !== null)
       );
     };
+    
 
     this.word = (text, to = null, from = null) => {
       to = to ? this.props.secondary.keywords[to] : this.props.primary.keywords.res;
@@ -54,6 +55,12 @@ class Translate extends React.Component{
     this.Element = () => {
       return this.get();
     };
+
+    this.getter = this.getter.bind(this);
+  }
+
+  getter(str){
+    return this.translate(str);
   }
 
   componentDidMount(){

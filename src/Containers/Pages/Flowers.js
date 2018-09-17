@@ -38,9 +38,10 @@ export class FlowerItem extends React.Component {
 
   getImage(){
     if(this.props.images.length === 0){
-      return <CollectionItemImage image={this.props.image}/>
-    }else{
-      return <CollectionItemImages image={this.props.image} images={this.props.images}/>
+      return <CollectionItemImage link={'/flowers/items/item_' + this.props.id} image={this.props.image}/>
+    }else {
+        // return <CollectionItemImages image={this.props.image} images={this.props.images}/>
+        return null;
     }
   }
 
@@ -152,7 +153,47 @@ class Element extends React.Component{
   }
 
   componentDidMount(){
-    document.title = `Botanica’22 ყვავილების მაღაზია - ${this.props.Flowers.currentCategory.replace(new RegExp('_', 'g'), ' ')}`;
+    let cat = this.props.Flowers.currentCategory.replace(new RegExp('_', 'g'), ' ');
+    cat = cat.trim();
+    switch(cat){
+      case 'bouquets': {
+        cat = 'თაიგულები';
+        break;
+      }
+      case 'mixed bouquets': {
+        cat = 'შერეული თაიგულები';
+        break;
+      }
+      case 'compositions': {
+        cat = 'კომპოზიციები ყუთში';
+        break;
+      }
+      case 'Bouquets with vase': {
+        cat =  'ყვავილები ლარნაკით';
+        break;
+      }
+      case 'wedding bouquets': {
+        cat = 'საქორწინო თაიგულები';
+        break;
+      }
+      case 'bouquet of the day': {
+        cat = 'დღის თაიგული';
+        break;
+      }
+      case 'funeral flowers': {
+        cat = 'სამგლოვიარო ფლორისტიკა';
+        break;
+      }
+      case 'Plants': {
+        cat = 'ქოთნის ყვავილები';
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+
+    document.title = `Botanica’22 ყვავილების მაღაზია - ${cat}`;
   }
 
   _add_cart(id){

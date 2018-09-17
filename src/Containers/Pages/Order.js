@@ -157,53 +157,113 @@ class OrderProduct extends React.Component{
     _order(event){
         event.preventDefault();
 
-        if(this.state.dateIsOkay){
-            this.pend();
-            Axios.get('http://botanica22.ge/data/pay.php', {
-                params: {
+        let something = false;
+        let errors = [];
+        this.o_firstName.classList.remove('broken');
+        this.o_lastName.classList.remove('broken');
+        this.o_email.classList.remove('broken');
+        this.o_phone_one.classList.remove('broken');
+        this.a_firstName.classList.remove('broken');
+        this.delivery_address.classList.remove('broken');
+        if(this.o_firstName.value.length ===0){
+            errors.push('o_firstName');
+        }
+        if(this.o_lastName.value.length === 0){
+            errors.push('o_lastName');
+        }
+        if(this.o_email.value.length === 0){
+            errors.push('o_email');
+        }
+        if(this.o_phone_one.value.length === 0){
+            errors.push('o_phone_one');
+        }
+
+        if(this.delivery_address.value.length === 0){
+            errors.push('delivery_address');
+        }
+
+        if(errors.length === 0){
+            something = true;
+        }
+
+        if(something){
+
+            if(this.state.dateIsOkay){
+                console.log({
                     orderIt: true,
-                    o_firstName: this.o_firstName.value,
-                    o_lastName: this.o_lastName.value,
-                    o_email: this.o_email.value,
-                    o_phone_one: this.o_phone_one.value,
-                    o_phone_two: this.o_phone_two.value,
-                    message: this.message.value,
-                    price: this.props.price,
-                    a_firstName: this.a_firstName.value,
-                    a_lastName: this.a_lastName.value,
-                    a_phone: this.a_phone.value,
-                    d_date: this.delivery_date.value,
-                    d_time: this.delivery_time.value,
-                    d_city: this.delivery_city.value,
-                    d_anony: this.delivery_anony.value,
-                    d_addr: this.delivery_address.value,
-                    d_info: this.additional_info.value,
-                    product_id: this.props.id,
-                    count: parseInt(this.props.count) || -1
-                }
-            })
-                .then((response) => {
-                    if(response.data.id !== undefined && response.data.action !== undefined){
-                        let form = document.createElement('form');
-                        form.setAttribute('method', 'post');
-                        form.setAttribute('action', response.data.action);
-
-                        let hiddenField = document.createElement('input');
-                        hiddenField.setAttribute('name', 'trans_id');
-                        hiddenField.setAttribute('type', 'hidden');
-                        hiddenField.setAttribute('value', response.data.id);
-                        form.appendChild(hiddenField);
-                        document.body.appendChild(form);
-                        form.submit();
-
-                    }
-                    this.unpend();
+                        o_firstName: this.o_firstName.value,
+                        o_lastName: this.o_lastName.value,
+                        o_email: this.o_email.value.length === 0 ? 'zura.siprashvili.four@gmail.com' : this.o_email.value,
+                        o_phone_one: this.o_phone_one.value.length === 0 ? '' : '+995' + this.o_phone_one.value,
+                        o_phone_two: this.o_phone_two.value,
+                        message: this.message.value,
+                        price: this.props.price,
+                        a_firstName: this.a_firstName.value,
+                        a_lastName: this.a_lastName.value,
+                        a_phone: this.a_phone.value.length === 0 ? '' : '+995' + this.a_phone.value,
+                        d_date: this.delivery_date.value,
+                        d_time: this.delivery_time.value,
+                        d_city: this.delivery_city.value,
+                        d_anony: this.delivery_anony.value,
+                        d_addr: this.delivery_address.value,
+                        d_info: this.additional_info.value,
+                        product_id: this.props.id,
+                        count: parseInt(this.props.count) || -1
                 })
-                .catch((error) => {
-                    console.log(error);
-                    alert('Sorry but there was an error try again :)');
-                    this.unpend();
-                });
+                this.pend();
+                Axios.get('https://botanica22.ge/data/pay.php', {
+                    params: {
+                        orderIt: true,
+                        o_firstName: this.o_firstName.value,
+                        o_lastName: this.o_lastName.value,
+                        o_email: this.o_email.value.length === 0 ? 'zura.siprashvili.four@gmail.com' : this.o_email.value,
+                        o_phone_one: this.o_phone_one.value.length === 0 ? '' : '+995' + this.o_phone_one.value,
+                        o_phone_two: this.o_phone_two.value,
+                        message: this.message.value,
+                        price: this.props.price,
+                        a_firstName: this.a_firstName.value,
+                        a_lastName: this.a_lastName.value,
+                        a_phone: this.a_phone.value.length === 0 ? '' : '+995' + this.a_phone.value,
+                        d_date: this.delivery_date.value,
+                        d_time: this.delivery_time.value,
+                        d_city: this.delivery_city.value,
+                        d_anony: this.delivery_anony.value,
+                        d_addr: this.delivery_address.value,
+                        d_info: this.additional_info.value,
+                        product_id: this.props.id,
+                        count: parseInt(this.props.count) || -1
+                    }
+                })
+                    .then((response) => {
+                        if(response.data.id !== undefined && response.data.action !== undefined){
+                            let form = document.createElement('form');
+                            form.setAttribute('method', 'post');
+                            form.setAttribute('action', response.data.action);
+
+                            let hiddenField = document.createElement('input');
+                            hiddenField.setAttribute('name', 'trans_id');
+                            hiddenField.setAttribute('type', 'hidden');
+                            hiddenField.setAttribute('value', response.data.id);
+                            form.appendChild(hiddenField);
+                            document.body.appendChild(form);
+                            form.submit();
+
+                        }
+                        this.unpend();
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        alert('Sorry but there was an error try again :)');
+                        this.unpend();
+                    });
+            }else{
+                alert('date');
+                this.delivery_time.classList.add('broken');
+            }
+        }else{
+            errors.map(error => {
+                this[error].classList.add('broken');
+            })
         }
     }
 
@@ -254,11 +314,11 @@ class OrderProduct extends React.Component{
                                                                     ref={(element) => {this.o_firstName = element}}
                                                                     readOnly={this.state.pending}
                                                                     onChange={this._onChangeNames}
-                                                                    required={true}
+                                                                    
                                                                     type="text"
                                                                     className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
                                                                     name={'orderer_firstName'}
-                                                                    placeholder={'John'}/>
+                                                                    />
                                                             </div>
                                                         </Col>
                                                         <Col
@@ -281,9 +341,9 @@ class OrderProduct extends React.Component{
                                                                     readOnly={this.state.pending}
                                                                     type="text"
                                                                     name={'orderer_lastName'}
-                                                                    required={true}
+                                                                    
                                                                     className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
-                                                                    placeholder={'Doe'}/>
+                                                                    />
                                                             </div>
                                                         </Col>
                                                     </Row>
@@ -297,11 +357,17 @@ class OrderProduct extends React.Component{
                                                                     className={'font-weight-light m-0'}>
                                                                     <Translate>
                                                                         phone number
-                                                                    </Translate> 1
+                                                                    </Translate>
                                                                 </h5>
                                                             </div>
                                                             <div
-                                                                className={'p-1'}>
+                                                                className={'p-1 d-flex flex-row'}>
+                                                                <input
+                                                                    style={{width: '60px', height: '100%', borderRight:'0'}}
+                                                                    type="text"
+                                                                    className="form-control border rounded-no bg-white px-2 py-2 text-muted"
+                                                                    readOnly="true"
+                                                                    value="+995"/>
                                                                 <input
                                                                     type="text"
                                                                     readOnly={this.state.pending}
@@ -309,10 +375,19 @@ class OrderProduct extends React.Component{
                                                                     onChange={this._onChangePhone}
                                                                     name={'orderer_phoneOne'}
                                                                     className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
-                                                                    placeholder={'(+995) 568 82 22 22'}/>
+                                                                    />
                                                             </div>
+                                                            <input
+                                                                    ref={(element) => {this.o_phone_two = element}}
+                                                                    onChange={this._onChangePhone}
+                                                                    readOnly={this.state.pending}
+                                                                    type="hidden"
+                                                                    name={'orderer_phoneTwo'}
+                                                                    className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
+                                                                    />
+
                                                         </Col>
-                                                        <Col
+                                                        {/* <Col
                                                             className={'p-1'}
                                                             md={6}>
                                                             <div
@@ -333,9 +408,10 @@ class OrderProduct extends React.Component{
                                                                     type="text"
                                                                     name={'orderer_phoneTwo'}
                                                                     className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
-                                                                    placeholder={'(+995) 568 82 22 22'}/>
+                                                                    />
                                                             </div>
-                                                        </Col>
+                                                        </Col> */}
+                                                        
                                                     </Row>
                                                     <Row>
                                                         <Col
@@ -357,10 +433,9 @@ class OrderProduct extends React.Component{
                                                                     onChange={this._onChangeEmail}
                                                                     readOnly={this.state.pending}
                                                                     type="email"
-                                                                    required={true}
                                                                     name={'orderer_email'}
                                                                     className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
-                                                                    placeholder={'example@gmail.com'}/>
+                                                                    />
                                                             </div>
                                                         </Col>
                                                     </Row>
@@ -429,8 +504,9 @@ class OrderProduct extends React.Component{
                                                                     className={''}
                                                                     name={'orderer_trust'}
                                                                     type={'checkbox'}
-                                                                    readOnly={this.state.pending}
                                                                     required={true}
+                                                                    readOnly={this.state.pending}
+                                                                    
                                                                     value={''}/>
                                                                 <label
                                                                     className={'ml-2 form-check-label  small text-muted'}>
@@ -486,7 +562,7 @@ class OrderProduct extends React.Component{
                                                                                 ref={(element) => {this.a_firstName = element}}
                                                                                 onChange={this._onChangeNames}
                                                                                 className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
-                                                                                placeholder={'John'}/>
+                                                                                />
                                                                         </div>
                                                                     </Col>
                                                                     <Col
@@ -510,7 +586,7 @@ class OrderProduct extends React.Component{
                                                                                 ref={(element) => {this.a_lastName = element}}
                                                                                 onChange={this._onChangeNames}
                                                                                 className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
-                                                                                placeholder={'Doe'}/>
+                                                                                />
                                                                         </div>
                                                                     </Col>
                                                                 </Row>
@@ -528,7 +604,13 @@ class OrderProduct extends React.Component{
                                                                             </h5>
                                                                         </div>
                                                                         <div
-                                                                            className={'p-1'}>
+                                                                            className={'p-1 d-flex flex-row'}>
+                                                                            <input
+                                                                                style={{width: '60px', height: '100%', borderRight:'0'}}
+                                                                                type="text"
+                                                                                className="form-control border rounded-no bg-white px-2 py-2 text-muted"
+                                                                                readOnly="true"
+                                                                                value="+995"/>
                                                                             <input
                                                                                 type="text"
                                                                                 name={'addresser_phone'}
@@ -536,7 +618,7 @@ class OrderProduct extends React.Component{
                                                                                 onChange={this._onChangePhone}
                                                                                 readOnly={this.state.pending}
                                                                                 className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
-                                                                                placeholder={'(+995) 568 82 22 22'}/>
+                                                                                />
                                                                         </div>
                                                                     </Col>
                                                                 </Row>
@@ -577,7 +659,7 @@ class OrderProduct extends React.Component{
                                                                             className={'p-1'}>
                                                                             <input
                                                                                 type="date"
-                                                                                required={true}
+                                                                                
                                                                                 name={'delivery_date'}
                                                                                 ref={(element) => {this.delivery_date = element}}
                                                                                 onChange={this._onDateChange}
@@ -615,7 +697,7 @@ class OrderProduct extends React.Component{
                                                                             className={'p-1'}>
                                                                             <input
                                                                                 type="time"
-                                                                                required={true}
+                                                                                
                                                                                 name={'delivery_time'}
                                                                                 readOnly={this.state.pending}
                                                                                 ref={(element) => {this.delivery_time = element}}
@@ -719,9 +801,9 @@ class OrderProduct extends React.Component{
                                                                                 name={'full_address'}
                                                                                 readOnly={this.state.pending}
                                                                                 ref={(element) => {this.delivery_address = element}}
-                                                                                required={true}
+                                                                                
                                                                                 className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
-                                                                                placeholder={'Tbilisi, Ir.Abashidze, 22'}/>
+                                                                                />
                                                                         </div>
                                                                     </Col>
                                                                     <Col
@@ -771,9 +853,11 @@ class OrderProduct extends React.Component{
                                                     <Button
                                                         type={'reset'}
                                                         className={'btn-block h-100 text-light text-capitalize font-weight-light shadow btn-__grass'}>
-                                                        <Translate>
-                                                            reset
-                                                        </Translate>
+                                                        <h3>
+                                                            <Translate>
+                                                                reset
+                                                            </Translate>
+                                                        </h3>
                                                     </Button>
                                                 </Col>
                                                 <Col
@@ -782,16 +866,18 @@ class OrderProduct extends React.Component{
                                                     <Button
                                                         type={'submit'}
                                                         name={'order_it'}
-                                                        className={'btn-block h-100 text-light text-capitalize font-weight-light shadow btn-_grass'}>
-                                                        {
-                                                            this.state.pending === true ? (
-                                                                <FontAwesome
-                                                                    name={'spinner'}
-                                                                    spin={true}/>
-                                                            ): <Translate>
-                                                                send
-                                                            </Translate>
-                                                        }
+                                                        className={'btn-block h-100 text-light text-capitalize font-weight-bold shadow btn-grass'}>
+                                                        <h3>
+                                                            {
+                                                                this.state.pending === true ? (
+                                                                    <FontAwesome
+                                                                        name={'spinner'}
+                                                                        spin={true}/>
+                                                                ): <Translate>
+                                                                    send
+                                                                </Translate>
+                                                            }
+                                                        </h3>
                                                     </Button>
                                                 </Col>
                                             </Row>
@@ -851,7 +937,7 @@ class Element extends React.Component{
 
 
     componentDidMount(){
-        document.title = "Order - Botanica22 • ყვავილების მაღაზია Botanica22"
+        document.title = "შეკვეთა - Botanica22 • ყვავილების მაღაზია Botanica22"
     }
 
 

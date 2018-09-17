@@ -9,6 +9,10 @@
 @import './animate/animate/wobble.scss';
 
 
+.broken{
+  border: 1px solid rgba(red, 0.6) !important;
+}
+
 html{
   overflow-x: hidden !important;;
   width: 100vw;

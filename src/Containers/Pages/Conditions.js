@@ -21,7 +21,7 @@ class Element extends React.Component{
   }
 
   componentDidMount(){
-      document.title = "Delivery Conditions * Botanica22.ge";
+      document.title = "მიტანის პირობები * Botanica22.ge";
   }
 
   render(){
