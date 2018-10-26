@@ -47,7 +47,7 @@ class SliderSlide extends React.Component{
                 </Translate>
               </div>
               <div
-                className={'my-3'}>
+                className={'my-3 d-none'}>
                 <div className="container">
                   <div className="row">
                     <div className="col-lg-4 col-md-6 col-12">

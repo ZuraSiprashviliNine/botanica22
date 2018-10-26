@@ -43,65 +43,161 @@ class OrderProduct extends React.Component{
 
         this.state = {
             pending: false,
-            dateIsOkay: false
+            dateIsOkay: true
         };
 
         this.checkFunc = (date, time) => {
-            if (date == "" || time == "")
+            // if (date == "" || time == "")
+            //     return false;
+
+            // let year = parseInt(date.substring(0, 4));
+            // let month = parseInt(date.substring(5, 7));
+            // let day = parseInt(date.substring(8, 10));
+
+            // let h = parseInt(time.substring(0, 2));
+            // let m = parseInt(time.substring(3, 5));
+
+            // let ctime = new Date();
+
+            // // calculate time 5 h earlyer. mindfuck
+            // let hh = h;
+            // h -= 5;
+            // if (h < 0) {
+            //     h = 24 + h;
+            //     day--;
+            //     if (day < 0) {
+            //         month--;
+            //         if (month < 0) {
+            //             month = 11;
+            //             year--;
+            //         }
+            //         day = new Date(year, month, 0).getDate();
+            //     }
+            // }
+
+            // if (year < ctime.getFullYear()) {
+            //     return false;
+            // }
+
+            // if (month < ctime.getMonth() + 1 && year == ctime.getFullYear())
+            //     return false;
+
+            // if (day < ctime.getDate() && month == ctime.getMonth() + 1 && year == ctime.getFullYear())
+            //     return false;
+
+            // if (h < ctime.getHours() && day == ctime.getDate() && month == ctime.getMonth() + 1 && year == ctime.getFullYear())
+            //     return false;
+
+            // if (m < ctime.getMinutes() && h == ctime.getHours() && day == ctime.getDate() && month == ctime.getMonth() + 1 && year == ctime.getFullYear())
+            //     return false;
+
+            // if ((hh < 10 && hh > 0) || (hh == 0 && m > 0))
+            //     return false;
+            // return true;
+
+
+            // let nDate = new Date();
+            // nDate.setDate(date.getDate());
+            // nDate.setFullYear(date.getFullYear());
+            // nDate.setMonth(date.getMonth());
+
+            // console.log(nDate, date);
+
+            let _d = new Date(date +' ' + time);
+
+            let __d = new Date(this.getDateMin() + ' ' + this.getTimeMin());
+
+            if(__d.getTime() > _d.getTime()){
                 return false;
-
-            let year = parseInt(date.substring(0, 4));
-            let month = parseInt(date.substring(5, 7));
-            let day = parseInt(date.substring(8, 10));
-
-            let h = parseInt(time.substring(0, 2));
-            let m = parseInt(time.substring(3, 5));
-
-            let ctime = new Date();
-
-            // calculate time 5 h earlyer. mindfuck
-            let hh = h;
-            h -= 5;
-            if (h < 0) {
-                h = 24 + h;
-                day--;
-                if (day < 0) {
-                    month--;
-                    if (month < 0) {
-                        month = 11;
-                        year--;
-                    }
-                    day = new Date(year, month, 0).getDate();
-                }
+            }else{
+                return true;
             }
-
-            if (year < ctime.getFullYear()) {
-                return false;
-            }
-
-            if (month < ctime.getMonth() + 1 && year == ctime.getFullYear())
-                return false;
-
-            if (day < ctime.getDate() && month == ctime.getMonth() + 1 && year == ctime.getFullYear())
-                return false;
-
-            if (h < ctime.getHours() && day == ctime.getDate() && month == ctime.getMonth() + 1 && year == ctime.getFullYear())
-                return false;
-
-            if (m < ctime.getMinutes() && h == ctime.getHours() && day == ctime.getDate() && month == ctime.getMonth() + 1 && year == ctime.getFullYear())
-                return false;
-
-            if ((hh < 10 && hh > 0) || (hh == 0 && m > 0))
-                return false;
-            return true;
         };
 
+
+        this.getDateMin = this.getDateMin.bind(this);
+        this.getTimeMin = this.getTimeMin.bind(this);
 
         this.pend = this.pend.bind(this);
         this.unpend = this.unpend.bind(this);
         this._onDateChange = this._onDateChange.bind(this);
         this._onTimeChange = this._onTimeChange.bind(this);
         this.checkTimes = this.checkTimes.bind(this);
+    }
+
+    getDateMin(){
+        let x;
+        let _dd = ((gmt = 4) => {
+            let d = new Date();
+        
+            let utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+            
+            let nd = new Date(utc + (3600000 * gmt));
+            
+            return nd;
+        })();
+        if(_dd.getHours() < 10 && _dd.getHours() > 0){
+            let d = _dd;
+            d.setDate(d.getDate() + 1);
+            x=  d.getFullYear() + '-' + (() => {
+                if(d.getMonth().toString().length === 1){
+                    return '0' + (d.getMonth() + 1);
+                }else{
+                    return d.getMonth() + 1;
+                }
+            })() + '-' + (() => {
+                if(d.getDate().toString().length === 1){
+                    return '0' + (d.getDate());
+                }else{
+                    return d.getDate();
+                }
+            })();
+        }else{
+            let d = _dd;
+            d.setDate(d.getDate());
+            x= d.getFullYear() + '-' + (() => {
+                if(d.getMonth().toString().length === 1){
+                    return '0' + (d.getMonth() + 1);
+                }else{
+                    return d.getMonth() + 1;
+                }
+            })() + '-' + (() => {
+                if(d.getDate().toString().length === 1){
+                    return '0' + (d.getDate());
+                }else{
+                    return d.getDate();
+                }
+            })();
+        }
+        return x;
+    }
+
+    getTimeMin(){
+        let _dd = ((gmt = 4) => {
+            let d = new Date();
+        
+            let utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+            
+            let nd = new Date(utc + (3600000 * gmt));
+            
+            return nd;
+        })();
+        let d = _dd;
+        let x;
+        if(d.getHours() > 0 && d.getHours() < 10){
+            x = {
+                h: 10,
+                m: '00'
+            };
+        }else{
+            d.setHours(d.getHours() + 2);
+            x = {
+                h: d.getHours().toString().length === 1 ? '0' + d.getHours() : d.getHours(),
+                m: (d.getMinutes() + 5).toString().length === 1 ? '0' + (d.getMinutes() + 5) : (d.getMinutes() + 5)
+            };
+        }
+
+        return x.h + ':' + x.m;
     }
 
     _onDateChange(){
@@ -257,16 +353,24 @@ class OrderProduct extends React.Component{
                         this.unpend();
                     });
             }else{
-                alert('date');
                 this.delivery_time.classList.add('broken');
+                this.props.up();
             }
         }else{
             errors.map(error => {
                 this[error].classList.add('broken');
-            })
+                this.props.up();
+            });
         }
     }
 
+    componentDidMount(){
+        setTimeout(() => {
+            this.delivery_date.value = this.getDateMin();
+            this.delivery_time.value = this.getTimeMin();
+        }, 300);
+    }
+    
     render(){
         return (
             <Container>
@@ -316,7 +420,7 @@ class OrderProduct extends React.Component{
                                                                     onChange={this._onChangeNames}
                                                                     
                                                                     type="text"
-                                                                    className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
+                                                                    className={'form-control rounded-no bg-white px-2 py-1 text-muted'}
                                                                     name={'orderer_firstName'}
                                                                     />
                                                             </div>
@@ -342,7 +446,7 @@ class OrderProduct extends React.Component{
                                                                     type="text"
                                                                     name={'orderer_lastName'}
                                                                     
-                                                                    className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
+                                                                    className={'form-control rounded-no bg-white px-2 py-1 text-muted'}
                                                                     />
                                                             </div>
                                                         </Col>
@@ -365,7 +469,7 @@ class OrderProduct extends React.Component{
                                                                 <input
                                                                     style={{width: '60px', height: '100%', borderRight:'0'}}
                                                                     type="text"
-                                                                    className="form-control border rounded-no bg-white px-2 py-2 text-muted"
+                                                                    className="form-control rounded-no bg-white px-2 py-2 text-muted"
                                                                     readOnly="true"
                                                                     value="+995"/>
                                                                 <input
@@ -374,7 +478,7 @@ class OrderProduct extends React.Component{
                                                                     ref={(element) => {this.o_phone_one = element}}
                                                                     onChange={this._onChangePhone}
                                                                     name={'orderer_phoneOne'}
-                                                                    className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
+                                                                    className={'form-control rounded-no bg-white px-2 py-1 text-muted'}
                                                                     />
                                                             </div>
                                                             <input
@@ -383,7 +487,7 @@ class OrderProduct extends React.Component{
                                                                     readOnly={this.state.pending}
                                                                     type="hidden"
                                                                     name={'orderer_phoneTwo'}
-                                                                    className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
+                                                                    className={'form-control rounded-no bg-white px-2 py-1 text-muted'}
                                                                     />
 
                                                         </Col>
@@ -407,7 +511,7 @@ class OrderProduct extends React.Component{
                                                                     readOnly={this.state.pending}
                                                                     type="text"
                                                                     name={'orderer_phoneTwo'}
-                                                                    className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
+                                                                    className={'form-control rounded-no bg-white px-2 py-1 text-muted'}
                                                                     />
                                                             </div>
                                                         </Col> */}
@@ -434,7 +538,7 @@ class OrderProduct extends React.Component{
                                                                     readOnly={this.state.pending}
                                                                     type="email"
                                                                     name={'orderer_email'}
-                                                                    className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
+                                                                    className={'form-control rounded-no bg-white px-2 py-1 text-muted'}
                                                                     />
                                                             </div>
                                                         </Col>
@@ -463,7 +567,7 @@ class OrderProduct extends React.Component{
                                     name={'orderer_message'}
                                     readOnly={this.state.pending}
                                     ref={(element) => {this.message = element}}
-                                    className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}/>
+                                    className={'form-control rounded-no bg-white px-2 py-1 text-muted'}/>
                                                             </div>
                                                         </Col>
                                                     </Row>
@@ -494,20 +598,21 @@ class OrderProduct extends React.Component{
                                                                 old_price={this.props.old_price}
                                                                 description={this.props.description}/>
                                                         </Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col
-                                                            xs={12}>
-                                                            <div className={'px-3 py-2'}>
-                                                                <input
+                                                        <input
                                                                     ref={(element) => {this.that = element}}
                                                                     className={''}
                                                                     name={'orderer_trust'}
-                                                                    type={'checkbox'}
-                                                                    required={true}
+                                                                    type={'hidden'}
+                                                                    defaultChecked={true}
                                                                     readOnly={this.state.pending}
                                                                     
                                                                     value={''}/>
+                                                    </Row>
+                                                    <Row className="d-none">
+                                                        <Col
+                                                            xs={12}>
+                                                            <div className={'px-3 py-2'}>
+                                                                
                                                                 <label
                                                                     className={'ml-2 form-check-label  small text-muted'}>
                                                                     <Translate>
@@ -561,7 +666,7 @@ class OrderProduct extends React.Component{
                                                                                 readOnly={this.state.pending}
                                                                                 ref={(element) => {this.a_firstName = element}}
                                                                                 onChange={this._onChangeNames}
-                                                                                className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
+                                                                                className={'form-control rounded-no bg-white px-2 py-1 text-muted'}
                                                                                 />
                                                                         </div>
                                                                     </Col>
@@ -585,7 +690,7 @@ class OrderProduct extends React.Component{
                                                                                 readOnly={this.state.pending}
                                                                                 ref={(element) => {this.a_lastName = element}}
                                                                                 onChange={this._onChangeNames}
-                                                                                className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
+                                                                                className={'form-control rounded-no bg-white px-2 py-1 text-muted'}
                                                                                 />
                                                                         </div>
                                                                     </Col>
@@ -608,7 +713,7 @@ class OrderProduct extends React.Component{
                                                                             <input
                                                                                 style={{width: '60px', height: '100%', borderRight:'0'}}
                                                                                 type="text"
-                                                                                className="form-control border rounded-no bg-white px-2 py-2 text-muted"
+                                                                                className="form-control rounded-no bg-white px-2 py-2 text-muted"
                                                                                 readOnly="true"
                                                                                 value="+995"/>
                                                                             <input
@@ -617,7 +722,7 @@ class OrderProduct extends React.Component{
                                                                                 ref={(element) => {this.a_phone = element}}
                                                                                 onChange={this._onChangePhone}
                                                                                 readOnly={this.state.pending}
-                                                                                className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
+                                                                                className={'form-control rounded-no bg-white px-2 py-1 text-muted'}
                                                                                 />
                                                                         </div>
                                                                     </Col>
@@ -659,12 +764,11 @@ class OrderProduct extends React.Component{
                                                                             className={'p-1'}>
                                                                             <input
                                                                                 type="date"
-                                                                                
                                                                                 name={'delivery_date'}
                                                                                 ref={(element) => {this.delivery_date = element}}
                                                                                 onChange={this._onDateChange}
                                                                                 readOnly={this.state.pending}
-                                                                                className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}/>
+                                                                                className={'form-control rounded-no bg-white px-2 py-1 text-muted'}/>
                                                                         </div>
                                                                         <div
                                                                             className={'p-1'}>
@@ -697,12 +801,11 @@ class OrderProduct extends React.Component{
                                                                             className={'p-1'}>
                                                                             <input
                                                                                 type="time"
-                                                                                
                                                                                 name={'delivery_time'}
                                                                                 readOnly={this.state.pending}
                                                                                 ref={(element) => {this.delivery_time = element}}
                                                                                 onChange={this._onTimeChange}
-                                                                                className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}/>
+                                                                                className={'form-control rounded-no bg-white px-2 py-1 text-muted'}/>
                                                                         </div>
                                                                         <div
                                                                             className={'p-1'}>
@@ -802,7 +905,7 @@ class OrderProduct extends React.Component{
                                                                                 readOnly={this.state.pending}
                                                                                 ref={(element) => {this.delivery_address = element}}
                                                                                 
-                                                                                className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}
+                                                                                className={'form-control rounded-no bg-white px-2 py-1 text-muted'}
                                                                                 />
                                                                         </div>
                                                                     </Col>
@@ -826,7 +929,7 @@ class OrderProduct extends React.Component{
                                           }}
                                           name={'additional_info'}
                                           readOnly={this.state.pending}
-                                          className={'form-control border rounded-no bg-white px-2 py-1 text-muted'}/>
+                                          className={'form-control rounded-no bg-white px-2 py-1 text-muted'}/>
                                                                         </div>
                                                                     </Col>
                                                                 </Row>
@@ -948,6 +1051,12 @@ class Element extends React.Component{
                 className={'page bg-light animated fadeIn py-md-5'}>
                 {this.props.Order.product ? (
                     <OrderProduct
+                        up={() => {
+                            this.props.setPath();
+                            setTimeout(() => {
+                                this.props.setPath(this.props.match.url);
+                            }, 100);
+                        }}
                         setsize={this.props.setsize}
                         setcount={this.props.setcount}
                         carts={this.props.Cart.carts}

@@ -38,10 +38,19 @@ export class FlowerItem extends React.Component {
 
   getImage(){
     if(this.props.images.length === 0){
-      return <CollectionItemImage link={'/flowers/items/item_' + this.props.id} image={this.props.image}/>
+      return (
+        <Link
+          to={'/flowers/items/item_' + this.props.id}>
+            <CollectionItemImage link={'/flowers/items/item_' + this.props.id} _id={this.props.id} image={this.props.image}/>
+        </Link>
+      )
     }else {
-        // return <CollectionItemImages image={this.props.image} images={this.props.images}/>
-        return null;
+        return (
+          <Link
+            to={'/flowers/items/item_' + this.props.id}>
+            <CollectionItemImages link={'/flowers/items/item_' + this.props.id} image={this.props.image} images={this.props.images}/>
+          </Link>
+        );
     }
   }
 
@@ -57,7 +66,10 @@ export class FlowerItem extends React.Component {
           addcart={this.props.addcart}
           rmcart={this.props.rmcart}
           slag={`/flowers/items/item_${this.props.id}`} description={this.props.description}/>
-        {this.getImage()}
+          {/* <Link
+            to={'/flowers/items/item_' + this.props.id}> */}
+            {this.getImage()}
+          {/* </Link> */}
         <div className={'bg-white'}>
           <Container>
             <Row className={'align-items-center'}>

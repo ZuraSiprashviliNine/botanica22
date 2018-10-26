@@ -149,6 +149,21 @@ export class CollectionItemImage extends React.Component{
     super(props);
   }
 
+  // render(){
+  //   return (
+  //     <Link
+  //       className="d-block image"
+  //       style={{backgroundImage: `url(${this.props.image})`}}
+  //       to={this.props.link || '/'}>
+  //         <img
+  //           src={'/assets/ideal.jpg'}
+  //           alt={'image'}
+  //           className={'w-100'}
+  //           style={{visibility: 'hidden'}}/>
+  //     </Link>
+  //   )
+  // }
+  
   render(){
     return (
       <div
@@ -198,6 +213,27 @@ export class CollectionItemImages extends React.Component{
     })
   }
 
+  // render(){
+  //   return (
+  //     <Link
+  //       to={this.props.link || '/'}>
+  //       <Swiper
+  //         {...this.state.params}>
+  //         <div
+  //           className={'image'}
+  //           style={{backgroundImage: `url(${this.props.image})`}}>
+  //           <img
+  //             src={'/assets/ideal.jpg'}
+  //             alt={'image'}
+  //             className={'w-100'}
+  //             style={{visibility: 'hidden'}}/>
+  //         </div>
+  //         {this.getSlides()}
+  //       </Swiper>  
+  //     </Link>
+  //   )
+  // }
+
   render(){
     return (
       <Swiper
@@ -235,7 +271,10 @@ export class CollectionItem extends React.Component{
           fvaddid={this.props.fvaddid}
           slag={`/flowers/items/item_${this.props.id}`}
           description={this.props.description}/>
-        <CollectionItemImage image={this.props.image}/>
+          <Link
+            to={`/flowers/items/item_${this.props.id}`}>
+            <CollectionItemImage image={this.props.image}/>
+          </Link>
         <div className={'bg-white'}>
           <Container>
             <Row className={'align-items-center'}>

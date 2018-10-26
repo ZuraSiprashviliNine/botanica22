@@ -454,7 +454,8 @@ header .navbar {
   .collections .collection .image, .collections-flowers .collection .image {
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center; }
+    background-position: center;
+    cursor: pointer; }
   .collections .collection .price, .collections-flowers .collection .price {
     position: relative;
     z-index: 100; }
